@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LojaVirtual.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LojaVirtual.Controllers
 {
-    public class ProdutoController
+    public class ProdutoController: Controller
     {
-        public string Visualizar()
+        public ActionResult Visualizar()
         {
-            return "Meu Primeiro Produto";
+            Produto produto = GetProduto();
+            return View(produto);
+        }
+
+        private Produto GetProduto()
+        {
+            return new Produto() { id = 33, Nome = "Manteiga do Marlon", Descricao = "Vai que vai", Valor = 69.69M };
         }
     }
 }
