@@ -23,3 +23,5 @@ C:\Repos\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.
 C:\Repos\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Produto\Visualizar.cshtml.g.cs
 C:\Repos\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorTargetAssemblyInfo.cs
 C:\Repos\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
+C:\Repos\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
+C:\Repos\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.cshtml.g.cs
