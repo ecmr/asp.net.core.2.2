@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaVirtual.Controllers
@@ -16,6 +17,15 @@ namespace LojaVirtual.Controllers
         public IActionResult Contato()
         {
             return View();
+        }
+
+        public IActionResult ContatoAcao()
+        {
+            Contato contato = new Contato();
+            contato.Nome = HttpContext.Request.Form["nome"];
+            contato.Email = HttpContext.Request.Form["email"];
+            contato.Texto = HttpContext.Request.Form["texto"];
+            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso!<br/> Nome: {0} E-mail: {1} Texto: {2}", nome, email, texto), ContentType="text/html"};
         }
 
         public IActionResult Login()
