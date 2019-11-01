@@ -105,3 +105,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+/LojaVirtual/.vs/LojaVirtual/v16/Server/sqlite3
