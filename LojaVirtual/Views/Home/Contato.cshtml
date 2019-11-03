@@ -36,7 +36,15 @@
                 <div>
                     <article class="card">
                         <div class="card-body p-5">
-                            <p class="alert alert-success">Mensagem de sucesso!</p>
+                            @if (ViewData["msg_envio"] != null)
+                            {
+                                <p class="alert alert-success">@ViewData["msg_envio"]</p>
+                            }
+                            @if (ViewData["msg_Error"] != null)
+                            {
+                                <p class="alert alert-danger">@ViewData["msg_Error"]</p>
+                            }
+
 
                             <form role="form" method="post" action="/Home/ContatoAcao">
                                 <div class="form-group">

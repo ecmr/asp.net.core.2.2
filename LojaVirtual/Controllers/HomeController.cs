@@ -2,15 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libraries.Email;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
         public IActionResult Index()
         {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Error: " + ex.Message.ToString());
+            }
             return View();
         }
 
@@ -22,10 +41,44 @@ namespace LojaVirtual.Controllers
         public IActionResult ContatoAcao()
         {
             Contato contato = new Contato();
-            contato.Nome = HttpContext.Request.Form["nome"];
-            contato.Email = HttpContext.Request.Form["email"];
-            contato.Texto = HttpContext.Request.Form["texto"];
-            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso!<br/> Nome: {0} E-mail: {1} Texto: {2}", nome, email, texto), ContentType="text/html"};
+            try
+            {
+                contato.Nome = HttpContext.Request.Form["nome"];
+                contato.Email = HttpContext.Request.Form["email"];
+                contato.Texto = HttpContext.Request.Form["texto"];
+
+
+
+                var lstMsgError = new List<ValidationResult>();
+                var contexto = new ValidationContext(contato);
+
+                if (Validator.TryValidateObject(contato, contexto, lstMsgError, true))
+                {
+                    //ContatoEmail.EnviarContatoPorEmail(contato);
+                    ViewData["msg_envio"] = "E-mail enviado com sucesso!";
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var texto in lstMsgError)
+                    {
+                        sb.Append(texto.ErrorMessage + "<br\>");
+                    }
+
+                    ViewData["msg_Error"] = sb.ToString();
+                }
+
+
+                return View("Contato"); // new ContentResult() { Content= "Email enviado com sucesso!"};
+            }
+            catch (Exception ex)
+            {
+                ViewData["msg_Error"] = "Ops!...tivemos um problema, tente novamente mais tarde!";
+                _logger.LogInformation("Error: " + ex.Message.ToString());
+
+                //TODO - Implementar log
+            }
+            return View();
         }
 
         public IActionResult Login()
