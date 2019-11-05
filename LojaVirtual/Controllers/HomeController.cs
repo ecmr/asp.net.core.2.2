@@ -54,7 +54,7 @@ namespace LojaVirtual.Controllers
 
                 if (Validator.TryValidateObject(contato, contexto, lstMsgError, true))
                 {
-                    //ContatoEmail.EnviarContatoPorEmail(contato);
+                    ContatoEmail.EnviarContatoPorEmail(contato);
                     ViewData["msg_envio"] = "E-mail enviado com sucesso!";
                 }
                 else
@@ -62,10 +62,11 @@ namespace LojaVirtual.Controllers
                     StringBuilder sb = new StringBuilder();
                     foreach (var texto in lstMsgError)
                     {
-                        sb.Append(texto.ErrorMessage + "<br\>");
+                        sb.Append(texto.ErrorMessage + "<br />");
                     }
 
                     ViewData["msg_Error"] = sb.ToString();
+                    ViewData["CONTATO"] = contato;
                 }
 
 
