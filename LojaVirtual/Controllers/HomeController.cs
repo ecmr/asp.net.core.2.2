@@ -20,6 +20,7 @@ namespace LojaVirtual.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             try
@@ -33,7 +34,25 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
-        public IActionResult Contato()
+        [HttpPost]
+        public IActionResult Index([FromForm]NewsLetterEmail newsLetter)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Error: " + ex.InnerException);
+                throw new Exception("Error: " + ex.InnerException);
+            }
+
+            //TODO Adição no banco de dados
+            //TODO Validações
+            return View();
+        }
+
+            public IActionResult Contato()
         {
             return View();
         }

@@ -38,7 +38,6 @@ C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.Views.dll
 C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CoreCompileInputs.cache
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorAssemblyInfo.cache
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorAssemblyInfo.cs
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfoInputs.cache
@@ -46,14 +45,6 @@ C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Assemb
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.TagHelpers.input.cache
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.TagHelpers.output.cache
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorCoreGenerate.cache
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\CadastroCliente.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\CarrinhoCompras.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contato.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Login.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Produto\Visualizar.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorTargetAssemblyInfo.cache
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorTargetAssemblyInfo.cs
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
@@ -63,3 +54,14 @@ C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj
 C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\NLog.config
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Libraries.Lang.Mensagem.resources
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.GenerateResource.cache
+C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\udemy\asp.net.core.2.2\LojaVirtual\bin\Debug\netcoreapp2.2\appsettings.json
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\CadastroCliente.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\CarrinhoCompras.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contato.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Login.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Produto\Visualizar.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.cshtml.g.cs
