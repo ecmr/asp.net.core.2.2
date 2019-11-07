@@ -8,15 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using LojaVirtual.DataBase;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        private LojaVirtualContext _banco;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(LojaVirtualContext banco,ILogger<HomeController> logger)
         {
+            _banco = banco;
             _logger = logger;
         }
 
@@ -39,16 +42,26 @@ namespace LojaVirtual.Controllers
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    _banco.NewsLetterEmails.Add(newsLetter);
+                    _banco.SaveChanges();
 
+                    TempData["MSG_S"] = "Email cadastrado, você receberá nossas promossões!";
+
+
+                    RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogInformation("Error: " + ex.InnerException);
                 throw new Exception("Error: " + ex.InnerException);
             }
-
-            //TODO Adição no banco de dados
-            //TODO Validações
             return View();
         }
 
@@ -89,14 +102,12 @@ namespace LojaVirtual.Controllers
                 }
 
 
-                return View("Contato"); // new ContentResult() { Content= "Email enviado com sucesso!"};
+                return View("Contato");
             }
             catch (Exception ex)
             {
                 ViewData["msg_Error"] = "Ops!...tivemos um problema, tente novamente mais tarde!";
                 _logger.LogInformation("Error: " + ex.Message.ToString());
-
-                //TODO - Implementar log
             }
             return View();
         }
