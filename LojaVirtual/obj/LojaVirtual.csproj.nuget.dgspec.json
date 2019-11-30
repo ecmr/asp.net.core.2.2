@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj": {}
+    "C:\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj": {
+    "C:\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj",
+        "projectUniqueName": "C:\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj",
         "projectName": "LojaVirtual",
-        "projectPath": "C:\\Repos\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj",
-        "packagesPath": "C:\\Users\\Edinei\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\udemy\\asp.net.core.2.2\\LojaVirtual\\obj\\",
+        "projectPath": "C:\\udemy\\asp.net.core.2.2\\LojaVirtual\\LojaVirtual.csproj",
+        "packagesPath": "C:\\Users\\edine\\.nuget\\packages\\",
+        "outputPath": "C:\\udemy\\asp.net.core.2.2\\LojaVirtual\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Edinei\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\edine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -54,11 +52,29 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "NLog.Config": {
+              "target": "Package",
+              "version": "[4.6.7, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[4.9.0, )"
             }
           },
           "imports": [
