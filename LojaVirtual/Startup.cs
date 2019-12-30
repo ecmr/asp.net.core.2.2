@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.DataBase;
+﻿using LojaVirtual.DataBase;
+using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Sessao;
+using LojaVirtual.Repositories;
+using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Net;
+using System.Net.Mail;
 
 namespace LojaVirtual
 {
@@ -26,6 +29,32 @@ namespace LojaVirtual
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<INewsletterRepository, NewsletterRepository>();
+            services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+
+            //SMTP
+            services.AddScoped<SmtpClient>(options=>
+            {
+                #pragma warning disable CA2000 // Dispose objects before losing scope
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = Configuration.GetValue<string>("Email:ServerSMTP"),
+                    Port = Configuration.GetValue<int>("Email:ServerPort"),
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:UserName"), Configuration.GetValue<string>("Email:Password")),
+                    EnableSsl = true
+                };
+                #pragma warning restore CA2000 // Dispose objects before losing scope
+                return smtp;
+            });
+
+            services.AddScoped<GerenciarEmail>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -33,6 +62,21 @@ namespace LojaVirtual
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            /*
+            * Session config
+            */
+            services.AddMemoryCache(); // guardar dados na memória
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddScoped<Sessao>();
+            services.AddScoped<LoginCliente>();
+            services.AddScoped<LoginColaborador>();
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -43,7 +87,7 @@ namespace LojaVirtual
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public static void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -60,9 +104,14 @@ namespace LojaVirtual
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

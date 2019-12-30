@@ -1,0 +1,51 @@
+﻿@model X.PagedList.IPagedList<LojaVirtual.Models.Colaborador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>Colaborador</h1>
+
+<a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
+
+@if (Html.ViewContext.TempData["MSGS"] != null)
+{
+    <p class="alert alert-success">@Html.ViewContext.TempData["MSGS"]</p>
+}
+
+@if (Model.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(Model => Model.First().id)</th>
+                    <th scope="col">@Html.DisplayNameFor(Model => Model.First().Nome)</th>
+                    <th scope="col">@Html.DisplayNameFor(Model => Model.First().Email)</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (LojaVirtual.Models.Colaborador colaborador in Model)
+                {
+                <tr>
+                    <th scope="row">@colaborador.id</th>
+                    <td>@colaborador.Nome</td>
+                    <td>@colaborador.Email</td>
+                    <td>
+                        <a asp-action="GerarSenha" asp-route-id="@colaborador.id" class="btn btn-secondary">Gerar Senha</a>
+                        <a asp-action="Atualizar" asp-route-id="@colaborador.id" class="btn btn-secondary">Atualizar</a>
+                        <a asp-action="Excluir" asp-route-id="@colaborador.id" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }))
+}
+else
+{
+    <br /><br /><span>Sem colaboradores cadastrados</span>
+}

@@ -95,5 +95,32 @@ namespace LojaVirtual.Libraries.Lang {
                 return ResourceManager.GetString("MSG_E004", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha de confirmação está diferente da informada!.
+        /// </summary>
+        public static string MSG_E005 {
+            get {
+                return ResourceManager.GetString("MSG_E005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operação salvo com sucesso!.
+        /// </summary>
+        public static string MSG_S001 {
+            get {
+                return ResourceManager.GetString("MSG_S001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senha enviada para e-mail com sucesso!.
+        /// </summary>
+        public static string MSG_S002 {
+            get {
+                return ResourceManager.GetString("MSG_S002", resourceCulture);
+            }
+        }
     }
 }

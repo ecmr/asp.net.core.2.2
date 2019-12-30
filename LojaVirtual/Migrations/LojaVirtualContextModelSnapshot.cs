@@ -19,6 +19,25 @@ namespace LojaVirtual.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CategoriaPaiId");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Slug");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaPaiId");
+
+                    b.ToTable("Categorias");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -44,17 +63,44 @@ namespace LojaVirtual.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("LojaVirtual.Models.Colaborador", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Senha");
+
+                    b.Property<string>("Tipo");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Colaboradores");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.NewsLetterEmail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
                     b.ToTable("NewsLetterEmails");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Categoria", "CategoriaPai")
+                        .WithMany()
+                        .HasForeignKey("CategoriaPaiId");
                 });
 #pragma warning restore 612, 618
         }

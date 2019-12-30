@@ -5,22 +5,59 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Content Remove="Areas\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <None Remove="Areas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\Colaborador\Controllers\ColaboradorController.cs" />
+    <Compile Include="Areas\Colaborador\Controllers\CategoriaController.cs" />
+    <Compile Include="Areas\Colaborador\Controllers\HomeController.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="NLog.Config" Version="4.6.7" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="7.6.0" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <Folder Include="Areas\Colaborador\Models\" />
+    <Folder Include="Libraries\Imagens_Carrousel\" />
     <Folder Include="Logs\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="Areas\Colaborador\Views\Categoria\Atualizar.cshtml" />
+    <None Include="Areas\Colaborador\Views\Categoria\Cadastrar.cshtml" />
+    <None Include="Areas\Colaborador\Views\Categoria\Index.cshtml" />
+    <None Include="Areas\Colaborador\Views\Colaborador\Atualizar.cshtml" />
+    <None Include="Areas\Colaborador\Views\Colaborador\Cadastrar.cshtml" />
+    <None Include="Areas\Colaborador\Views\Colaborador\Index.cshtml" />
+    <None Include="Areas\Colaborador\Views\Home\CadastrarSenha.cshtml" />
+    <None Include="Areas\Colaborador\Views\Home\Login.cshtml" />
+    <None Include="Areas\Colaborador\Views\Home\Painel.cshtml" />
+    <None Include="Areas\Colaborador\Views\Home\RecuperarSenha.cshtml" />
+    <None Include="Areas\Colaborador\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\Colaborador\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Colaborador\Views\_ViewStart.cshtml" />
   </ItemGroup>
 
 

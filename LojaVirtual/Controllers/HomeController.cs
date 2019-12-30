@@ -1,25 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Email;
+﻿using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Filtro;
+using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
+using LojaVirtual.Repositories.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using LojaVirtual.DataBase;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
-        private LojaVirtualContext _banco;
+        
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(LojaVirtualContext banco,ILogger<HomeController> logger)
+        private IClienteRepository _repositoryCliente;
+        private INewsletterRepository _repositoryNewsletter;
+        private LoginCliente _loginCliente;
+        private GerenciarEmail _gerenciarEmail;
+        public HomeController(IClienteRepository repositoryCliente, INewsletterRepository newsletterRepository, LoginCliente loginCliente, GerenciarEmail gerenciarEmail, ILogger<HomeController> logger)
         {
-            _banco = banco;
+            _repositoryCliente = repositoryCliente;
+            _repositoryNewsletter = newsletterRepository;
+            _loginCliente = loginCliente;
+            _gerenciarEmail = gerenciarEmail;
             _logger = logger;
         }
 
@@ -40,12 +47,11 @@ namespace LojaVirtual.Controllers
         [HttpPost]
         public IActionResult Index([FromForm]NewsLetterEmail newsLetter)
         {
-            try
+            try  
             {
                 if (ModelState.IsValid)
                 {
-                    _banco.NewsLetterEmails.Add(newsLetter);
-                    _banco.SaveChanges();
+                    _repositoryNewsletter.Cadastrar(newsLetter);
 
                     TempData["MSG_S"] = "Email cadastrado, você receberá nossas promossões!";
 
@@ -86,7 +92,7 @@ namespace LojaVirtual.Controllers
 
                 if (Validator.TryValidateObject(contato, contexto, lstMsgError, true))
                 {
-                    ContatoEmail.EnviarContatoPorEmail(contato);
+                    _gerenciarEmail.EnviarContatoPorEmail(contato);
                     ViewData["msg_envio"] = "E-mail enviado com sucesso!";
                 }
                 else
@@ -112,9 +118,36 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromForm]Cliente cliente)
+        {
+            Cliente _cliente = _repositoryCliente.Login(cliente.Email, cliente.Senha);
+
+            if (_cliente != null)
+            {
+                _loginCliente.Login(_cliente);
+
+                return new RedirectResult(Url.Action(nameof(Painel)));
+            }
+            else
+            {
+                ViewData["msg_Error"] = "Usuário não localizado, verifique e-mail e senha!";
+                return View();
+                //return new ContentResult() { Content = "Não Logado" };
+            }
+        }
+
+        [HttpGet]
+        [ClienteAutorizacao]
+        public IActionResult Painel()
+        {
+            return new ContentResult() { Content = "PAINEL" };
         }
 
         public IActionResult CadastroCliente()
