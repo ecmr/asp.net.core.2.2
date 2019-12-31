@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Areas\Colaborador\Controllers\ClienteController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\ColaboradorController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\CategoriaController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\HomeController.cs" />
@@ -48,6 +49,7 @@
     <None Include="Areas\Colaborador\Views\Categoria\Atualizar.cshtml" />
     <None Include="Areas\Colaborador\Views\Categoria\Cadastrar.cshtml" />
     <None Include="Areas\Colaborador\Views\Categoria\Index.cshtml" />
+    <None Include="Areas\Colaborador\Views\Cliente\Index.cshtml" />
     <None Include="Areas\Colaborador\Views\Colaborador\Atualizar.cshtml" />
     <None Include="Areas\Colaborador\Views\Colaborador\Cadastrar.cshtml" />
     <None Include="Areas\Colaborador\Views\Colaborador\Index.cshtml" />

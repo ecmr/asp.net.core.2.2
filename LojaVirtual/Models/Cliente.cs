@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LojaVirtual.Libraries.Lang;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Lang;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LojaVirtual.Models
 {
@@ -33,6 +31,16 @@ namespace LojaVirtual.Models
 
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public string Senha { get; set; }
+
+        //TODO - Confirmar Senha
+
+        [NotMapped]
+        [Display(Name ="Confirme a senha")]
+        [Compare("Senha", ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E005")]
+        public string ConfirmacaoSenha { get; set; }
+
+        [Display(Name ="Situação")]
+        public string Situacao { get; set; }
 
     }
 }

@@ -23,6 +23,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
+        /// <summary>
+        /// ValidateAntiForgeryToken é usado par proteção de CRRF - invação de sites externos
+        /// Está configurado em Libraries Middleware
+        /// </summary>
+        /// <param name="colaborador"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Login([FromForm]Models.Colaborador colaborador)
         {
@@ -43,6 +49,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [ColaboradorAutorizacao]
+        [ValidateHttpRefererAttribute]
         public IActionResult Logout()
         {
             _loginColaborador.Logout();
