@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Models;
+﻿using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
@@ -19,9 +15,9 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             _clienteRepository = clienteRepository;
         }
 
-        public IActionResult Index(int? pagina)
+        public IActionResult Index(int? pagina, string pesquisa)
         {
-            IPagedList<Cliente> clientes = _clienteRepository.ObterTodosClientes(pagina);
+            IPagedList<Cliente> clientes = _clienteRepository.ObterTodosClientes(pagina, pesquisa);
             return View();
         }
 
