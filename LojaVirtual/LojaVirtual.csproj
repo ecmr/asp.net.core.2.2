@@ -13,10 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Libraries\bug\CurrentDirectoryHelpers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Areas\Colaborador\Controllers\ClienteController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\ColaboradorController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\CategoriaController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Colaborador\Controllers\ImagemController.cs" />
     <Compile Include="Areas\Colaborador\Controllers\ProdutoController.cs" />
   </ItemGroup>
 
@@ -41,8 +46,10 @@
 
   <ItemGroup>
     <Folder Include="Areas\Colaborador\Models\" />
+    <Folder Include="Libraries\bug\" />
     <Folder Include="Libraries\Imagens_Carrousel\" />
     <Folder Include="Logs\" />
+    <Folder Include="wwwroot\uploads\temp\" />
   </ItemGroup>
 
 
@@ -58,6 +65,7 @@
     <None Include="Areas\Colaborador\Views\Home\Login.cshtml" />
     <None Include="Areas\Colaborador\Views\Home\Painel.cshtml" />
     <None Include="Areas\Colaborador\Views\Home\RecuperarSenha.cshtml" />
+    <None Include="Areas\Colaborador\Views\Produto\Atualizar.cshtml" />
     <None Include="Areas\Colaborador\Views\Produto\Cadastrar.cshtml" />
     <None Include="Areas\Colaborador\Views\Produto\Index.cshtml" />
     <None Include="Areas\Colaborador\Views\Shared\_Layout.cshtml" />

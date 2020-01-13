@@ -65,7 +65,6 @@ C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.dll
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
-C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
 C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
 C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Libraries.Lang.Mensagem.resources
 C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.GenerateResource.cache
@@ -102,3 +101,4 @@ C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirt
 C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorTargetAssemblyInfo.cs
 C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
 C:\udemy\repo-amil\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
