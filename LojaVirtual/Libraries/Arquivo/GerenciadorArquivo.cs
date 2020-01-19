@@ -23,7 +23,7 @@ namespace LojaVirtual.Libraries.Arquivo
                 file.CopyTo(stream);
             }
 
-            return Path.Combine("/uploads/temp/", NomeImagem);
+            return Path.Combine("/uploads/temp/", NomeImagem).Replace("\\", "/");
         }
 
         public static bool ExcluirImagemProduto(string caminho)
