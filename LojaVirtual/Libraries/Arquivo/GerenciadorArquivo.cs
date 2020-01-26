@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LojaVirtual.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,6 +42,41 @@ namespace LojaVirtual.Libraries.Arquivo
             }
 
             return false;
+        }
+
+        public static List<Imagem> MoverImagensProduto(List<string> ListaCaminhoTemp, int ProdutoId)
+        {
+            var CaminhoFinal = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProdutoId.ToString());
+            if (!Directory.Exists(CaminhoFinal))
+            {
+                Directory.CreateDirectory(CaminhoFinal);
+            }
+
+            List<Imagem> ListaFinalRetorno = new List<Imagem>();
+
+            foreach (var caminhoTemp in ListaCaminhoTemp)
+            {
+                if (!string.IsNullOrEmpty(caminhoTemp))
+                {
+                    var nomeImagem = Path.GetFileName(caminhoTemp);
+                    var caminhoTotalTemp =  Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads\\temp", nomeImagem);
+                    var caminhoTotalFinal = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads", ProdutoId.ToString(), nomeImagem);
+
+                    if (File.Exists(caminhoTotalTemp))
+                    {
+                        File.Copy(caminhoTotalTemp, caminhoTotalFinal);
+                        if (File.Exists(caminhoTotalFinal))
+                            File.Delete(caminhoTotalTemp);
+
+                        ListaFinalRetorno.Add(new Imagem() { Caminho = Path.Combine("uploads", ProdutoId.ToString(), nomeImagem).Replace("\\", "/"), ProdutoId = ProdutoId });
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            return ListaFinalRetorno;
         }
     }
 }

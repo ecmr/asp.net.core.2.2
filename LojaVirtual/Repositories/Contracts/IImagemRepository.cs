@@ -8,6 +8,7 @@ namespace LojaVirtual.Repositories.Contracts
 {
     public interface IImagemRepository
     {
+        void CadastrarImagem(List<Imagem> CaminhoLista, int produtoId);
         void Cadastrar(Imagem imagem);
 
         //void Atualizar(Produto produto);

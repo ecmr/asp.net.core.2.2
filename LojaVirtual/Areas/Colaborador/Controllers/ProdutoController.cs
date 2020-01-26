@@ -1,8 +1,10 @@
-﻿using LojaVirtual.Libraries.Lang;
+﻿using LojaVirtual.Libraries.Arquivo;
+using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
@@ -12,10 +14,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     {
         private IProdutoRepository _produtoRepository;
         private ICategoriaRepository _categoriaRepository;
-        public ProdutoController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        private IImagemRepository _imagemRepository;
+        public ProdutoController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository, IImagemRepository imagemRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;
+            _imagemRepository = imagemRepository;
         }
 
         public IActionResult Index(int? pagina, string pesquisa)
@@ -37,6 +41,9 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             if(ModelState.IsValid)
             {
                 _produtoRepository.Cadastrar(produto);
+                List<Imagem> CaminhoLista =  GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.id);
+
+                _imagemRepository.CadastrarImagem(CaminhoLista, produto.id);
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
                 return RedirectToAction(nameof(Index));
