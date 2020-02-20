@@ -59,20 +59,34 @@ namespace LojaVirtual.Libraries.Arquivo
                 if (!string.IsNullOrEmpty(caminhoTemp))
                 {
                     var nomeImagem = Path.GetFileName(caminhoTemp);
-                    var caminhoTotalTemp =  Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads\\temp", nomeImagem);
-                    var caminhoTotalFinal = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads", ProdutoId.ToString(), nomeImagem);
 
-                    if (File.Exists(caminhoTotalTemp))
+                    var CaminhoDef = Path.Combine("/uploads", ProdutoId.ToString(), nomeImagem).Replace("\\", "/");
+
+                    if (CaminhoDef != caminhoTemp)
                     {
-                        File.Copy(caminhoTotalTemp, caminhoTotalFinal);
-                        if (File.Exists(caminhoTotalFinal))
-                            File.Delete(caminhoTotalTemp);
+                        var caminhoTotalTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads\\temp", nomeImagem);
+                        var caminhoTotalFinal = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads", ProdutoId.ToString(), nomeImagem);
 
-                        ListaFinalRetorno.Add(new Imagem() { Caminho = Path.Combine("uploads", ProdutoId.ToString(), nomeImagem).Replace("\\", "/"), ProdutoId = ProdutoId });
+                        if (File.Exists(caminhoTotalTemp))
+                        {
+                            if (File.Exists(caminhoTotalFinal))
+                                File.Delete(caminhoTotalFinal);
+
+                            File.Copy(caminhoTotalTemp, caminhoTotalFinal);
+
+                            if (File.Exists(caminhoTotalFinal))
+                                File.Delete(caminhoTotalTemp);
+
+                            ListaFinalRetorno.Add(new Imagem() { Caminho = Path.Combine("/uploads", ProdutoId.ToString(), nomeImagem).Replace("\\", "/"), ProdutoId = ProdutoId });
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
                     else
                     {
-                        return null;
+                        ListaFinalRetorno.Add(new Imagem() { Caminho = Path.Combine("/uploads", ProdutoId.ToString(), nomeImagem).Replace("\\", "/"), ProdutoId = ProdutoId });
                     }
                 }
             }

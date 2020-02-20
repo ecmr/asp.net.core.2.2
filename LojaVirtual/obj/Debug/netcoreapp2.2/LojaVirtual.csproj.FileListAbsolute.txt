@@ -101,3 +101,4 @@ C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.dll
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
+C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache

@@ -48,9 +48,14 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 TempData["MSG_S"] = Mensagem.MSG_S001;
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(c => new SelectListItem(c.Nome, string.Concat(c.Id)));
+                produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a => a.Trim().Length > 0).Select(a => new Imagem() { Caminho = a }).ToList();
+                
+                return View(produto);
+            }
 
-            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(c => new SelectListItem(c.Nome, string.Concat(c.Id)));
-            return View();
         }
 
         [HttpGet]
@@ -68,12 +73,21 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             if (ModelState.IsValid)
             {
                 _produtoRepository.Atualizar(produto);
+                List<Imagem> CaminhoLista = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.id);
+
+                _imagemRepository.ExcluirImagensDoProduto(produto.id);
+                _imagemRepository.CadastrarImagem(CaminhoLista, produto.id);
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
+                return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(c => new SelectListItem(c.Nome, string.Concat(c.Id)));
+                produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a => a.Trim().Length > 0).Select(a => new Imagem() { Caminho = a }).ToList();
 
-            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(c => new SelectListItem(c.Nome, string.Concat(c.Id)));
-            return View(produto);
+                return View(produto);
+            }
         }
     }
 }
