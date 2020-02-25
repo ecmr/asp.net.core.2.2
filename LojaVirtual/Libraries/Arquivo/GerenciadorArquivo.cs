@@ -1,11 +1,7 @@
 ﻿using LojaVirtual.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Arquivo
 {
@@ -91,6 +87,23 @@ namespace LojaVirtual.Libraries.Arquivo
                 }
             }
             return ListaFinalRetorno;
+        }
+
+        public static void ExcluirImagensProduto(List<Imagem> lstImagem)
+        {
+            int produtoId = 0;
+            foreach (var imagem in lstImagem)
+            {
+                ExcluirImagemProduto(imagem.Caminho);
+                produtoId = imagem.ProdutoId;
+            }
+
+            var PastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produtoId.ToString());
+
+            if (Directory.Exists(PastaProduto))
+            {
+                Directory.Delete(PastaProduto);
+            }
         }
     }
 }

@@ -1,18 +1,21 @@
 ﻿using LojaVirtual.DataBase;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using X.PagedList;
-using Microsoft.EntityFrameworkCore;
 
 namespace LojaVirtual.Repositories
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        private IConfiguration _conf;
+        IConfiguration _conf;
         LojaVirtualContext _banco;
+
         public ProdutoRepository(LojaVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
@@ -31,16 +34,16 @@ namespace LojaVirtual.Repositories
             _banco.SaveChanges();
         }
 
-        public void Excluir(int id)
+        public void Excluir(int Id)
         {
-            Produto produto = ObterProduto(id);
+            Produto produto = ObterProduto(Id);
             _banco.Remove(produto);
             _banco.SaveChanges();
         }
 
-        public Produto ObterProduto(int id)
+        public Produto ObterProduto(int Id)
         {
-            return _banco.Produtos.Include(p => p.Imagens).Where(p=>p.id == id).FirstOrDefault();
+            return _banco.Produtos.Include(a => a.Imagens).Where(a => a.id == Id).FirstOrDefault();
         }
 
         public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa)
@@ -52,11 +55,10 @@ namespace LojaVirtual.Repositories
             var bancoProduto = _banco.Produtos.AsQueryable();
             if (!string.IsNullOrEmpty(pesquisa))
             {
-                bancoProduto = bancoProduto.Where(c => c.Nome.Contains(pesquisa.Trim()));
+                bancoProduto = bancoProduto.Where(a => a.Nome.Contains(pesquisa.Trim()));
             }
 
-            return bancoProduto.Include(p => p.Imagens).ToPagedList<Produto>(NumeroPagina, RegistroPorPagina);
-
+            return bancoProduto.Include(a => a.Imagens).ToPagedList<Produto>(NumeroPagina, RegistroPorPagina);
         }
     }
 }

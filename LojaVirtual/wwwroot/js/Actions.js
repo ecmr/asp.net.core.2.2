@@ -39,12 +39,17 @@ function AjaxUploadImagemProduto() {
     });
 
     $('.input-file').change(function () {
+
         var Binario = $(this)[0].files[0];
         var Formulario = new FormData();
         Formulario.append("file", Binario);
+
         var CampoHidden = $(this).parent().find("input[name=imagem]");
         var Imagem = $(this).parent().find(".img-upload");
         var btnExcluir = $(this).parent().find(".btn-imagem-excluir");
+
+        Imagem.attr("src", "/img/loading.gif");
+        Imagem.addClass("thumb");
 
         $.ajax({
             type: "POST",
@@ -54,13 +59,15 @@ function AjaxUploadImagemProduto() {
             processData: false,
             error: function () {
                 alert('Erro no envio do arquivo!');
+                Imagem.attr("src", "/img/imagem-padrao.png");
+                Imagem.removeClass("thumb");
             },
             success: function (data) {
-                //alert('Arquivo enviado com sucesso!\n' + data.caminho);
                 var caminho = data.caminho;
                 Imagem.attr("src", caminho);
                 CampoHidden.val(caminho);
                 btnExcluir.removeClass("btn-ocultar");
+                Imagem.removeClass("thumb");
             }
         });
     });

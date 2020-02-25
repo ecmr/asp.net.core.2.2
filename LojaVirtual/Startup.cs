@@ -80,7 +80,10 @@ namespace LojaVirtual
             services.AddScoped<LoginColaborador>();
             
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => {
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(m => "Faltou preencher este campo!");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
 
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
