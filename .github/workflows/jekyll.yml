@@ -17,4 +17,5 @@ jobs:
      - uses: baruchiro/github-actions@0.0.1        
        branches:
         - master
+        - develop  
         - release/*
