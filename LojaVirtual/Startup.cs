@@ -16,6 +16,11 @@ using System;
 using System.Net;
 using System.Net.Mail;
 
+
+
+
+
+
 namespace LojaVirtual
 {
     public class Startup
@@ -27,11 +32,10 @@ namespace LojaVirtual
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
-            
+
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
@@ -42,7 +46,6 @@ namespace LojaVirtual
             //SMTP
             services.AddScoped<SmtpClient>(options=>
             {
-                #pragma warning disable CA2000 // Dispose objects before losing scope
                 SmtpClient smtp = new SmtpClient()
                 {
                     Host = Configuration.GetValue<string>("Email:ServerSMTP"),
@@ -51,7 +54,6 @@ namespace LojaVirtual
                     Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:UserName"), Configuration.GetValue<string>("Email:Password")),
                     EnableSsl = true
                 };
-                #pragma warning restore CA2000 // Dispose objects before losing scope
                 return smtp;
             });
 
@@ -59,7 +61,6 @@ namespace LojaVirtual
 
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -70,9 +71,7 @@ namespace LojaVirtual
             services.AddMemoryCache(); // guardar dados na memória
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
+
             });
 
             services.AddScoped<Sessao>();
@@ -86,9 +85,8 @@ namespace LojaVirtual
 
 
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
             services.AddDbContext<LojaVirtualContext>(options => options.UseSqlServer(connectionString));
-
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,8 +106,6 @@ namespace LojaVirtual
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseSession();
             app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
             app.UseMvc(routes =>
@@ -122,6 +118,9 @@ namespace LojaVirtual
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseCookiePolicy();
+            app.UseSession();
+
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿@{
+    var TodasCategorias = (List<Categoria>)ViewData["TodasCategorias"] ?? (List<Categoria>)ViewBag.TodasCategorias;
+    var categoriaPai = (Categoria)ViewData["categoriaPai"] ?? ViewBag.Categoria;
+
+
+    var categoriasFilho = TodasCategorias.Where(c => c.CategoriaPaiId == categoriaPai.Id).ToList();
+}
+@if (categoriasFilho.Count() > 0)
+{
+    <li class="dropdown-submenu">
+        <a class="dropdown-item" tabindex="-1" href="#">@categoriaPai.Nome</a>
+        <ul class="dropdown-menu">
+            @foreach (var subCategoria in categoriasFilho)
+            {
+                @if (TodasCategorias.Where(c => c.CategoriaPaiId == subCategoria.Id).Count() > 0)
+                {
+                    ViewData.Remove("categoriaPai");
+
+                    @await Html.PartialAsync("~/Views/Shared/Components/Menu/_SubMenu.cshtml", new ViewDataDictionary(ViewData) { { "categoriaPai", subCategoria } })
+                }
+                else
+                {
+                    <li class="dropdown-item"><a href="#">@subCategoria.Nome</a></li>
+                }
+
+            }
+        </ul>
+    </li>
+}
+else
+{
+    <li class="dropdown-item"><a href="#">@categoriaPai.Nome</a></li>
+}

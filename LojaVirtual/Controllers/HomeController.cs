@@ -2,6 +2,7 @@
 using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
+using LojaVirtual.Models.ViewModels;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,15 @@ namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
-        
+        private IProdutoRepository _produtoRepository;
         private readonly ILogger<HomeController> _logger;
         private IClienteRepository _repositoryCliente;
         private INewsletterRepository _repositoryNewsletter;
         private LoginCliente _loginCliente;
         private GerenciarEmail _gerenciarEmail;
-        public HomeController(IClienteRepository repositoryCliente, INewsletterRepository newsletterRepository, LoginCliente loginCliente, GerenciarEmail gerenciarEmail, ILogger<HomeController> logger)
+        public HomeController(IProdutoRepository produtoRepository, IClienteRepository repositoryCliente, INewsletterRepository newsletterRepository, LoginCliente loginCliente, GerenciarEmail gerenciarEmail, ILogger<HomeController> logger)
         {
+            _produtoRepository = produtoRepository;
             _repositoryCliente = repositoryCliente;
             _repositoryNewsletter = newsletterRepository;
             _loginCliente = loginCliente;
@@ -31,11 +33,12 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int? pagina, string pesquisa)
         {
             try
             {
-                return View();
+                var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa)};
+                return View(viewModel);
             }
             catch (Exception ex)
             {
@@ -45,9 +48,9 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index([FromForm]NewsLetterEmail newsLetter)
+        public IActionResult Index(int? pagina, string pesquisa, [FromForm]NewsLetterEmail newsLetter)
         {
-            try  
+            try
             {
                 if (ModelState.IsValid)
                 {
@@ -56,11 +59,12 @@ namespace LojaVirtual.Controllers
                     TempData["MSG_S"] = "Email cadastrado, você receberá nossas promossões!";
 
 
-                    RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    return View();
+                    var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa) };
+                    return View(viewModel);
                 }
             }
             catch (Exception ex)
@@ -71,7 +75,12 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
-            public IActionResult Contato()
+        public IActionResult Contato()
+        {
+            return View();
+        }
+
+        public IActionResult Categoria()
         {
             return View();
         }

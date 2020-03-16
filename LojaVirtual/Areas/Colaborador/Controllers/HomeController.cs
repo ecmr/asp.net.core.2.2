@@ -30,6 +30,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         /// <param name="colaborador"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login([FromForm]Models.Colaborador colaborador)
         {
             Models.Colaborador _colaboradorDB = _repositoryColaborador.Login(colaborador.Email, colaborador.Senha);
