@@ -28,8 +28,13 @@ using X.PagedList;
 
 #line default
 #line hidden
+#line 6 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.ViewModels;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5107c7dd941433e46310f12d0dd2c9cef9211bdb", @"/Views/Home/CarrinhoCompras.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f481c602a4d8db024e6600ab0eab7c40549f1512", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"81d996c473fe74a77796582a66c01c25ff3186d3", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_CarrinhoCompras : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #line hidden
@@ -110,7 +115,7 @@ using X.PagedList;
                                     ");
             EndContext();
             BeginContext(2100, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb5729", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb5873", async() => {
                 BeginContext(2108, 1, true);
                 WriteLiteral("1");
                 EndContext();
@@ -130,7 +135,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(2156, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb6936", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb7080", async() => {
                 BeginContext(2164, 1, true);
                 WriteLiteral("2");
                 EndContext();
@@ -150,7 +155,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(2212, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb8143", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb8287", async() => {
                 BeginContext(2220, 1, true);
                 WriteLiteral("3");
                 EndContext();
@@ -170,7 +175,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(2268, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb9350", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb9494", async() => {
                 BeginContext(2276, 1, true);
                 WriteLiteral("4");
                 EndContext();
@@ -225,7 +230,7 @@ using X.PagedList;
                                     ");
             EndContext();
             BeginContext(4299, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb12607", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb12751", async() => {
                 BeginContext(4307, 1, true);
                 WriteLiteral("1");
                 EndContext();
@@ -245,7 +250,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(4355, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb13815", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb13959", async() => {
                 BeginContext(4363, 1, true);
                 WriteLiteral("2");
                 EndContext();
@@ -265,7 +270,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(4411, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb15023", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb15167", async() => {
                 BeginContext(4419, 1, true);
                 WriteLiteral("3");
                 EndContext();
@@ -285,7 +290,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(4467, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb16231", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb16375", async() => {
                 BeginContext(4475, 1, true);
                 WriteLiteral("4");
                 EndContext();
@@ -340,7 +345,7 @@ using X.PagedList;
                                     ");
             EndContext();
             BeginContext(6508, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb19499", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb19643", async() => {
                 BeginContext(6516, 1, true);
                 WriteLiteral("1");
                 EndContext();
@@ -360,7 +365,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(6564, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb20707", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb20851", async() => {
                 BeginContext(6572, 1, true);
                 WriteLiteral("2");
                 EndContext();
@@ -380,7 +385,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(6620, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb21915", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb22059", async() => {
                 BeginContext(6628, 1, true);
                 WriteLiteral("3");
                 EndContext();
@@ -400,7 +405,7 @@ using X.PagedList;
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(6676, 18, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb23123", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5107c7dd941433e46310f12d0dd2c9cef9211bdb23267", async() => {
                 BeginContext(6684, 1, true);
                 WriteLiteral("4");
                 EndContext();

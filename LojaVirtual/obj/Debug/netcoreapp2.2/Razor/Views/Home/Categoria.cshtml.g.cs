@@ -28,8 +28,13 @@ using X.PagedList;
 
 #line default
 #line hidden
+#line 6 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.ViewModels;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"70b96cc0e54800bbe74ae5fc136121e105cc4326", @"/Views/Home/Categoria.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f481c602a4d8db024e6600ab0eab7c40549f1512", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"81d996c473fe74a77796582a66c01c25ff3186d3", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Categoria : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

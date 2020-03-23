@@ -28,8 +28,13 @@ using X.PagedList;
 
 #line default
 #line hidden
+#line 6 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.ViewModels;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"851c242ac7ad338459be9e492bd0ce5106f83e30", @"/Views/Shared/Components/Menu/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f481c602a4d8db024e6600ab0eab7c40549f1512", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"81d996c473fe74a77796582a66c01c25ff3186d3", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_Menu_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Categoria>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-inline my-2 my-lg-0"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -181,7 +186,7 @@ WriteAttributeValue(" ", 2441, (ViewContext.RouteData.Values["controller"].ToStr
             WriteLiteral(">\r\n            <a class=\"nav-link\" href=\"/Home/Contato\"><i class=\"far fa-address-book\"></i> Contato </a>\r\n        </li>\r\n        </ul>\r\n        ");
             EndContext();
             BeginContext(2737, 513, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "851c242ac7ad338459be9e492bd0ce5106f83e3010169", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "851c242ac7ad338459be9e492bd0ce5106f83e3010313", async() => {
                 BeginContext(2789, 79, true);
                 WriteLiteral("\r\n            <input class=\"form-control mr-sm-2\" type=\"search\" name=\"pesquisa\"");
                 EndContext();

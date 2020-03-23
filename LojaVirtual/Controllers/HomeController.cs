@@ -33,12 +33,13 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? pagina, string pesquisa)
+        public IActionResult Index() //int? pagina, string pesquisa, string ordenacao="A"
         {
             try
             {
-                var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa)};
-                return View(viewModel);
+                //var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+               // var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+               // return View(viewModel);
             }
             catch (Exception ex)
             {
@@ -48,7 +49,7 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(int? pagina, string pesquisa, [FromForm]NewsLetterEmail newsLetter)
+        public IActionResult Index([FromForm]NewsLetterEmail newsLetter) //int? pagina, string pesquisa, string ordenacao, 
         {
             try
             {
@@ -63,8 +64,9 @@ namespace LojaVirtual.Controllers
                 }
                 else
                 {
-                    var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa) };
-                    return View(viewModel);
+                    //var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+                    // var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+                    // return View(viewModel);
                 }
             }
             catch (Exception ex)

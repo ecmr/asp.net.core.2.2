@@ -28,8 +28,13 @@ using X.PagedList;
 
 #line default
 #line hidden
+#line 6 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.ViewModels;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dd2b9bfdc2125fc7ef01e59625cb9bd18d154258", @"/Views/Home/Contato.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f481c602a4d8db024e6600ab0eab7c40549f1512", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"81d996c473fe74a77796582a66c01c25ff3186d3", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Contato : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("role", new global::Microsoft.AspNetCore.Html.HtmlString("form"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -156,7 +161,7 @@ using X.PagedList;
             WriteLiteral("\r\n\r\n                            ");
             EndContext();
             BeginContext(1788, 2345, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd2b9bfdc2125fc7ef01e59625cb9bd18d1542588034", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd2b9bfdc2125fc7ef01e59625cb9bd18d1542588178", async() => {
                 BeginContext(1847, 601, true);
                 WriteLiteral(@"
                                 <div class=""form-group"">
