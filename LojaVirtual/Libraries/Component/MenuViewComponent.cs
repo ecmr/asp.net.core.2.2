@@ -10,10 +10,9 @@ namespace LojaVirtual.Libraries.Component
     public class MenuViewComponent : ViewComponent
     {
         private ICategoriaRepository _categoriaRepository;
-
-        public MenuViewComponent(ICategoriaRepository CategoriaRepository)
+        public MenuViewComponent(ICategoriaRepository categoriaRepository)
         {
-            _categoriaRepository = CategoriaRepository; 
+            _categoriaRepository = categoriaRepository;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

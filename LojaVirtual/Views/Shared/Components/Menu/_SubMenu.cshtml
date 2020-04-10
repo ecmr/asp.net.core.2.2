@@ -1,33 +1,31 @@
 ﻿@{
-    var TodasCategorias = (List<Categoria>)ViewData["TodasCategorias"] ?? (List<Categoria>)ViewBag.TodasCategorias;
-    var categoriaPai = (Categoria)ViewData["categoriaPai"] ?? ViewBag.Categoria;
+    var TodasCategorias = (List<Categoria>)ViewData["TodasCategorias"];
+    var CategoriaPai = (Categoria)ViewData["CategoriaPai"];
 
-
-    var categoriasFilho = TodasCategorias.Where(c => c.CategoriaPaiId == categoriaPai.Id).ToList();
+    var CategoriasFilho = TodasCategorias.Where(a => a.CategoriaPaiId == CategoriaPai.Id);
 }
-@if (categoriasFilho.Count() > 0)
+@if (CategoriasFilho.Count() > 0)
 {
     <li class="dropdown-submenu">
-        <a class="dropdown-item" tabindex="-1" href="#">@categoriaPai.Nome</a>
+        <a class="dropdown-item" tabindex="-1" asp-controller="Produto" asp-action="ListagemCategoria" asp-route-slug="@CategoriaPai.Slug">@CategoriaPai.Nome</a>
         <ul class="dropdown-menu">
-            @foreach (var subCategoria in categoriasFilho)
+            @foreach (var categoriaF in CategoriasFilho)
             {
-                @if (TodasCategorias.Where(c => c.CategoriaPaiId == subCategoria.Id).Count() > 0)
+                @if (TodasCategorias.Where(a => a.CategoriaPaiId == categoriaF.Id).Count() > 0)
                 {
-                    ViewData.Remove("categoriaPai");
-
-                    @await Html.PartialAsync("~/Views/Shared/Components/Menu/_SubMenu.cshtml", new ViewDataDictionary(ViewData) { { "categoriaPai", subCategoria } })
+                    ViewData.Remove("CategoriaPai");
+                    //Apresentação do Submenu - Recursivo
+                    @await Html.PartialAsync("~/Views/Shared/Components/Menu/_Submenu.cshtml", new ViewDataDictionary(ViewData) { { "CategoriaPai", categoriaF } })
                 }
                 else
                 {
-                    <li class="dropdown-item"><a href="#">@subCategoria.Nome</a></li>
+                    <li class="dropdown-item"><a  asp-controller="Produto" asp-action="ListagemCategoria" asp-route-slug="@categoriaF.Slug">@categoriaF.Nome</a></li>
                 }
-
             }
         </ul>
     </li>
 }
 else
 {
-    <li class="dropdown-item"><a href="#">@categoriaPai.Nome</a></li>
+    <li class="dropdown-item"><a asp-controller="Produto" asp-action="ListagemCategoria" asp-route-slug="@CategoriaPai.Slug">@CategoriaPai.Nome</a></li>
 }

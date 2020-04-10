@@ -9,7 +9,7 @@ namespace LojaVirtual.Libraries.Login
 {
     public class LoginColaborador
     {
-        private string key = "Login.Colaborador";
+        private string Key = "Login.Colaborador";
         private Sessao.Sessao _sessao;
         public LoginColaborador(Sessao.Sessao sessao)
         {
@@ -19,18 +19,23 @@ namespace LojaVirtual.Libraries.Login
         public void Login(Colaborador colaborador)
         {
             //Serializar
-            String ColaboradorJSONString = JsonConvert.SerializeObject(colaborador);
-            _sessao.Cadastrar(key, ColaboradorJSONString);
+            string colaboradorJSONString = JsonConvert.SerializeObject(colaborador);
+
+            _sessao.Cadastrar(Key, colaboradorJSONString);
         }
 
         public Colaborador GetColaborador()
         {
-            String ColaboradorJSONString = string.Empty;
-            if (_sessao.Existe(key))
+            //Deserializar
+            if (_sessao.Existe(Key))
             {
-                ColaboradorJSONString = _sessao.Consultar(key);
+                string colaboradorJSONString = _sessao.Consultar(Key);
+                return JsonConvert.DeserializeObject<Colaborador>(colaboradorJSONString); ;
             }
-            return JsonConvert.DeserializeObject<Colaborador>(ColaboradorJSONString);
+            else
+            {
+                return null;
+            }
         }
 
         public void Logout()

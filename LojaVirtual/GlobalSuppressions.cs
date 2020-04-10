@@ -3,6 +3,8 @@
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
 
+using System.Diagnostics.CodeAnalysis;
+
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>", Scope = "member", Target = "~P:LojaVirtual.Models.Produto.Imagens")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>", Scope = "member", Target = "~M:LojaVirtual.Repositories.ClienteRepository.ObterTodosClientes(System.Nullable{System.Int32},System.String)~X.PagedList.IPagedList{LojaVirtual.Models.Cliente}")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>", Scope = "member", Target = "~M:LojaVirtual.Repositories.ProdutoRepository.ObterTodosProdutos(System.Nullable{System.Int32},System.String)~X.PagedList.IPagedList{LojaVirtual.Models.Produto}")]
@@ -19,3 +21,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>", Scope = "member", Target = "~M:LojaVirtual.Libraries.Arquivo.GerenciadorArquivo.CadastrarImagemProduto(Microsoft.AspNetCore.Http.IFormFile)~System.String")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>", Scope = "member", Target = "~M:LojaVirtual.Libraries.Arquivo.GerenciadorArquivo.MoverImagensProduto(System.Collections.Generic.List{System.String},System.String)~System.Collections.Generic.List{System.String}")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:LojaVirtual.Libraries.Arquivo.GerenciadorArquivo.MoverImagensProduto(System.Collections.Generic.List{System.String},System.String)~System.Collections.Generic.List{System.String}")]
+[assembly: SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:LojaVirtual.Migrations.NewsLetterEmail.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)")]

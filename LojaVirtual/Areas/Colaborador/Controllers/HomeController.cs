@@ -1,4 +1,8 @@
-﻿using LojaVirtual.Libraries.Filtro;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +15,9 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         private IColaboradorRepository _repositoryColaborador;
         private LoginColaborador _loginColaborador;
 
-        public HomeController(IColaboradorRepository colaboradorRepository, LoginColaborador loginColaborador)
+        public HomeController(IColaboradorRepository repositoryColaborador, LoginColaborador loginColaborador)
         {
-            _repositoryColaborador = colaboradorRepository;
+            _repositoryColaborador = repositoryColaborador;
             _loginColaborador = loginColaborador;
         }
 
@@ -23,49 +27,45 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
-        /// <summary>
-        /// ValidateAntiForgeryToken é usado par proteção de CRRF - invação de sites externos
-        /// Está configurado em Libraries Middleware
-        /// </summary>
-        /// <param name="colaborador"></param>
-        /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Login([FromForm]Models.Colaborador colaborador)
         {
-            Models.Colaborador _colaboradorDB = _repositoryColaborador.Login(colaborador.Email, colaborador.Senha);
+            Models.Colaborador colaboradorDB = _repositoryColaborador.Login(colaborador.Email, colaborador.Senha);
 
-            if (_colaboradorDB != null)
+            if (colaboradorDB != null)
             {
-                _loginColaborador.Login(_colaboradorDB);
+                _loginColaborador.Login(colaboradorDB);
 
                 return new RedirectResult(Url.Action(nameof(Painel)));
             }
             else
             {
-                ViewData["msg_Error"] = "Usuário não localizado, verifique e-mail e senha!";
+                ViewData["MSG_E"] = "Usuário não encontrado, verifique o e-mail e senha digitado!";
                 return View();
-                //return new ContentResult() { Content = "Não Logado" };
             }
         }
 
         [ColaboradorAutorizacao]
-        [ValidateHttpRefererAttribute]
+        [ValidateHttpReferer]
         public IActionResult Logout()
         {
             _loginColaborador.Logout();
             return RedirectToAction("Login", "Home");
         }
 
+
+
         public IActionResult RecuperarSenha()
         {
             return View();
         }
 
-        public IActionResult CadastrarSenha()
+        public IActionResult CadastrarNovaSenha()
         {
             return View();
         }
+
+
 
         [ColaboradorAutorizacao]
         public IActionResult Painel()

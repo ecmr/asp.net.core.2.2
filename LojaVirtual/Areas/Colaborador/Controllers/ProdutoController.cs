@@ -36,17 +36,16 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
-            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(a=> new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
         }
         [HttpPost]
-        public IActionResult Cadastrar(Produto produto)
-        {
+        public IActionResult Cadastrar(Produto produto) {
             if (ModelState.IsValid)
             {
                 _produtoRepository.Cadastrar(produto);
-                List<Imagem> ListaImagensDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.id);
-                _imagemRepository.CadastrarImagem(ListaImagensDef, produto.id);
+                List<Imagem> ListaImagensDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id);
+                _imagemRepository.CadastrarImagem(ListaImagensDef, produto.Id);
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
 
@@ -55,8 +54,8 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             else
             {
                 ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-                produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a => a.Trim().Length > 0).Select(a => new Imagem() { Caminho = a }).ToList();
-
+                produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a=>a.Trim().Length > 0).Select(a => new Imagem() { Caminho = a }).ToList();
+                
                 return View(produto);
             }
         }
@@ -77,10 +76,10 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 _produtoRepository.Atualizar(produto);
 
-                List<Imagem> ListaImagensDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.id);
+                List<Imagem> ListaImagensDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id);
 
-                _imagemRepository.ExcluirImagensDoProduto(produto.id);
-                _imagemRepository.CadastrarImagem(ListaImagensDef, produto.id);
+                _imagemRepository.ExcluirImagensDoProduto(produto.Id);
+                _imagemRepository.CadastrarImagem(ListaImagensDef, produto.Id);
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
 

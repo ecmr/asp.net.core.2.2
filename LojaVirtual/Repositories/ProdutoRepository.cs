@@ -43,15 +43,15 @@ namespace LojaVirtual.Repositories
 
         public Produto ObterProduto(int Id)
         {
-            return _banco.Produtos.Include(a => a.Imagens).OrderBy(a=>a.Nome).Where(a => a.id == Id).FirstOrDefault();
+            return _banco.Produtos.Include(a => a.Imagens).OrderBy(a=>a.Nome).Where(a => a.Id == Id).FirstOrDefault();
         }
 
         public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa)
         {
-            return ObterTodosProdutos(pagina,pesquisa, "A");
+            return ObterTodosProdutos(pagina,pesquisa, "A", null);
         }
 
-        public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa, string ordenacao)
+        public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa, string ordenacao, IEnumerable<Categoria> categorias)
         {
             int RegistroPorPagina = _conf.GetValue<int>("RegistroPorPagina");
 
@@ -63,11 +63,21 @@ namespace LojaVirtual.Repositories
                 bancoProduto = bancoProduto.Where(a => a.Nome.Contains(pesquisa.Trim()));
             }
             if(ordenacao == "A")
-            { bancoProduto = bancoProduto.OrderBy(a => a.Nome); }
+            { 
+                bancoProduto = bancoProduto.OrderBy(a => a.Nome); 
+            }
             if (ordenacao == "ME")
-            { bancoProduto = bancoProduto.OrderBy(a => a.Valor); }
+            { 
+                bancoProduto = bancoProduto.OrderBy(a => a.Valor); 
+            }
             if (ordenacao == "MA")
-            { bancoProduto = bancoProduto.OrderByDescending(a => a.Valor); }
+            { 
+                bancoProduto = bancoProduto.OrderByDescending(a => a.Valor); 
+            }
+            if(categorias != null && categorias.Any())
+            { 
+                bancoProduto = bancoProduto.Where(p => categorias.Select(c => c.Id).Contains(p.CategoriaId)); 
+            }
 
             return bancoProduto.Include(a => a.Imagens).ToPagedList<Produto>(NumeroPagina, RegistroPorPagina);
         }

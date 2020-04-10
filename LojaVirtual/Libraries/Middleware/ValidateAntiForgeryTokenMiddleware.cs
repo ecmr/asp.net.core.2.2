@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Middleware
@@ -18,15 +21,14 @@ namespace LojaVirtual.Libraries.Middleware
         public async Task Invoke(HttpContext context)
         {
             var Cabecalho = context.Request.Headers["x-requested-with"];
-            bool Ajax = (Cabecalho == "XMLHttpRequest") ? true : false; 
+            bool AJAX = (Cabecalho == "XMLHttpRequest") ? true : false;
 
-            if (HttpMethods.IsPost(context.Request.Method) && !(context.Request.Form.Files.Count == 1 && Ajax))
+            if (HttpMethods.IsPost(context.Request.Method) && !(context.Request.Form.Files.Count == 1 && AJAX))
             {
                 await _antiforgery.ValidateRequestAsync(context);
             }
 
             await _next(context);
         }
-
     }
 }

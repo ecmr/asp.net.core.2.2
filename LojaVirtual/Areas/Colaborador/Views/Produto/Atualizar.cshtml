@@ -1,5 +1,4 @@
 ﻿@model LojaVirtual.Models.Produto
-
 @{
     ViewData["Title"] = "Atualizar";
 }
@@ -18,47 +17,52 @@
 
         <div class="form-group col-md-6">
             <label asp-for="Nome"></label>
-            <input asp-for="Nome" class="form-control" placeholder="Digite o nome do produto">
+            <input asp-for="Nome" class="form-control" placeholder="Digite o nome do produto" />
             <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
     </div>
+
     <div class="form-group">
         <label asp-for="Descricao"></label>
-        <input asp-for="Descricao" class="form-control" placeholder="Digite a descrição">
+        <textarea asp-for="Descricao" class="form-control"></textarea>
         <span asp-validation-for="Descricao" class="text-danger"></span>
     </div>
+
+
     <div class="row">
+        <div class="form-group col-md-6">
+            <label asp-for="Quantidade"></label>
+            <div class="input-group mb-2">
+                <input asp-for="Quantidade" type="number" class="form-control" placeholder="Digite a quantidade de produtos" />
+                <div class="input-group-prepend">
+                    <div class="input-group-text">unid</div>
+                </div>
+            </div>
+            <span asp-validation-for="Quantidade" class="text-danger"></span>
+        </div>
+
         <div class="form-group col-md-6">
             <label asp-for="Valor"></label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">R$</div>
                 </div>
-                <input asp-for="Valor" class="form-control dinheiro" placeholder="Informe o preço do produto" />
+                <input asp-for="Valor" class="form-control dinheiro" placeholder="Digite o preço do produto" />
             </div>
             <span asp-validation-for="Valor" class="text-danger"></span>
         </div>
-
-        <div class="form-group col-md-6">
-            <label asp-for="Quantidade"></label>
-            <div class="input-group mb-2">
-                <input asp-for="Quantidade" type="number" class="form-control" />
-                <div class="input-group-prepend">
-                    <div class="input-group-text">Unid</div>
-                </div>
-            </div>
-            <span asp-validation-for="Quantidade" class="text-danger"></span>
-        </div>
     </div>
 
+
     <h2>Frete</h2>
+
     <div class="row">
         <div class="form-group col-md-3">
             <label asp-for="Peso"></label>
             <div class="input-group mb-2">
                 <input asp-for="Peso" class="form-control" />
                 <div class="input-group-prepend">
-                    <div class="input-group-text">Kg</div>
+                    <div class="input-group-text">kg</div>
                 </div>
             </div>
             <span asp-validation-for="Peso" class="text-danger"></span>
@@ -96,15 +100,14 @@
         </div>
     </div>
 
+
     @{
-        List<LojaVirtual.Models.Imagem> Imagens = new List<LojaVirtual.Models.Imagem>();
+        List<Imagem> Imagens = new List<Imagem>();
         if (Model != null)
         {
             Imagens = Model.Imagens.ToList();
         }
-
     }
-
     <div class="row Imagens">
         @for (int i = 0; i < 12; i++)
         {
@@ -113,10 +116,10 @@
                 <div class="col-md-2">
                     <input type="file" class="input-file" />
                     <div class="container-img-thumbnail">
-                        <img src="@Imagens.ElementAtOrDefault(i).Caminho" class="img-thumbnail img-upload" />
+                        <span class="helper"></span><img src="@Imagens.ElementAtOrDefault(i).Caminho" class="img-thumbnail img-upload" />
                     </div>
                     <div class="btn btn-danger btn-imagem-excluir">X</div>
-                    <input type="text" name="imagem" value="@Imagens.ElementAtOrDefault(i).Caminho" class="invisible" />
+                    <input type="text" name="imagem" value="@Imagens.ElementAtOrDefault(i).Caminho" />
                 </div>
             }
             else
@@ -124,17 +127,15 @@
                 <div class="col-md-2">
                     <input type="file" class="input-file" />
                     <div class="container-img-thumbnail">
-                        <img src="~/img/imagem-padrao.png" class="img-thumbnail img-upload" />
+                        <span class="helper"></span><img src="~/img/imagem-padrao.png" class="img-thumbnail img-upload" />
                     </div>
                     <div class="btn btn-danger btn-imagem-excluir btn-ocultar">X</div>
-                    <input type="text" name="imagem" class="invisible" />
+                    <input type="text" name="imagem" />
                 </div>
             }
-
         }
-
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button> <a asp-action="Index" class="btn btn-info">Voltar</a>
 
+    <button type="submit" class="btn btn-primary">Salvar</button> <a asp-action="Index" class="btn btn-info">Voltar</a>
 </form>

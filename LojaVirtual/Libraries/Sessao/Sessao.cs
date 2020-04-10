@@ -8,47 +8,49 @@ namespace LojaVirtual.Libraries.Sessao
 {
     public class Sessao
     {
-        IHttpContextAccessor _contex;
-
-        public Sessao(IHttpContextAccessor contex)
+        private IHttpContextAccessor _context;
+        public Sessao(IHttpContextAccessor context)
         {
-            _contex = contex;
-        }
-        //CRUD
-
-        public void Cadastrar(string key, string valor)
-        {
-            _contex.HttpContext.Session.SetString(key, valor);
+            _context = context;
         }
 
-        public void Atualiar(string key, string valor)
+        /*
+         * CRUD - Cadastrar/Atualizar/Consultar/Remover - RemoverTodos/Exist
+         */
+        public void Cadastrar(string Key, string Valor)
         {
-            if (Existe(key))
-            {
-                _contex.HttpContext.Session.Remove(key);
+            _context.HttpContext.Session.SetString(Key, Valor);
+        }
+        public void Atualizar(string Key, string Valor)
+        {
+            if (Existe(Key)) { 
+                _context.HttpContext.Session.Remove(Key);
             }
-            _contex.HttpContext.Session.SetString(key, valor);
+            _context.HttpContext.Session.SetString(Key, Valor);
         }
-
-        public void Remover(string key)
+        public void Remover(string Key)
         {
-            _contex.HttpContext.Session.Remove(key);
+            _context.HttpContext.Session.Remove(Key);
         }
-
-        public string Consultar(string key)
+        public string Consultar(string Key)
         {
-            return _contex.HttpContext.Session.GetString(key);
+            return _context.HttpContext.Session.GetString(Key);
         }
 
-        public bool Existe(string key)
+
+        public bool Existe(string Key)
         {
-            return _contex.HttpContext.Session.GetString(key) != null;
-        }
+            if( _context.HttpContext.Session.GetString(Key) == null)
+            {
+                return false;
+            }
 
+            return true;            
+        }
         public void RemoverTodos()
         {
-            _contex.HttpContext.Session.Clear();
+            _context.HttpContext.Session.Clear();
         }
-    }
 
+    }
 }

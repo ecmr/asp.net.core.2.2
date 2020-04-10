@@ -3,7 +3,6 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <main role="main">
     <br />
     <br />
@@ -15,15 +14,14 @@
             <div id="code_login_1">
                 <div class="card">
                     <article class="card-body">
-                        @if (ViewData["msg_Error"] != null)
+                        @if (ViewData["MSG_E"] != null)
                         {
-                            <p class="alert alert-danger">@Html.Raw(ViewData["msg_Error"])</p>
+                            <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
                         }
-                        
                         <h4 class="card-title mb-4 mt-1">Entrar</h4>
                         <form method="post">
                             <div class="form-group">
-                                <label>e-mail</label>
+                                <label>E-mail</label>
                                 <input asp-for="Email" class="form-control" placeholder="Email" type="email">
                             </div>
                             <div class="form-group">
@@ -34,6 +32,13 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block"> Acessar </button>
                             </div>
+                            @{ 
+                                /*
+                                 * Não esquecer de usar o código abaixo caso esteja usando HTML Helpers:
+                                 * @Html.AntiForgeryToken()
+                                 */
+                            }
+                            
                         </form>
                     </article>
                 </div>

@@ -1,12 +1,16 @@
-﻿using LojaVirtual.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LojaVirtual.Libraries.Sessao;
+using LojaVirtual.Models;
 using Newtonsoft.Json;
-using System;
 
 namespace LojaVirtual.Libraries.Login
 {
     public class LoginCliente
     {
-        private string key = "Login.Cliente";
+        private string Key = "Login.Cliente";
         private Sessao.Sessao _sessao;
         public LoginCliente(Sessao.Sessao sessao)
         {
@@ -16,23 +20,27 @@ namespace LojaVirtual.Libraries.Login
         public void Login(Cliente cliente)
         {
             //Serializar
-            String ClienteJSONString = JsonConvert.SerializeObject(cliente);
-            _sessao.Cadastrar(key, ClienteJSONString);
+            string clienteJSONString = JsonConvert.SerializeObject(cliente);
+
+            _sessao.Cadastrar(Key, clienteJSONString);
         }
 
         public Cliente GetCliente()
         {
-            String ClienteJSONString = string.Empty;
-            if (_sessao.Existe(key)) { 
-                ClienteJSONString = _sessao.Consultar(key);
+            //Deserializar
+            if( _sessao.Existe(Key)) { 
+                string clienteJSONString = _sessao.Consultar(Key);            
+                return JsonConvert.DeserializeObject<Cliente>(clienteJSONString); ;
             }
-            return JsonConvert.DeserializeObject<Cliente>(ClienteJSONString);
+            else
+            {
+                return null;
+            }
         }
 
         public void Logout()
         {
             _sessao.RemoverTodos();
         }
-
     }
 }

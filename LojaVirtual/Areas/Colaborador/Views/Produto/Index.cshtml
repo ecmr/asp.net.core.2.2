@@ -4,17 +4,20 @@
     var pesquisa = Context.Request.Query["pesquisa"];
 }
 
-<h1>Produtos</h1>
+<h1>Produto</h1>
 
 <br />
 <br />
-
+<!--
+    Formulário
+    -- QueryString: Colaborador/Cliente/Index?pesquisa={palavraDigitada}&pagina=3
+-->
 <form method="get">
     <div class="form-group">
         <label for="pesquisa"></label>
         <input type="text" name="pesquisa" id="pesquisa" value="@pesquisa" class="form-control" placeholder="Digite o nome do produto">
     </div>
-    <button type="submit" class="btn btn-primary">pesquisar</button>
+    <button type="submit" class="btn btn-primary">OK</button>
 </form>
 <br />
 <br />
@@ -33,7 +36,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">@Html.DisplayNameFor(model => model.First().id)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Id)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Nome)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Categoria)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Valor)</th>
@@ -41,16 +44,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (LojaVirtual.Models.Produto produto in Model)
+                @foreach (Produto produto in Model)
                 {
                     <tr>
-                        <th scope="row">@produto.id</th>
+                        <th scope="row">@produto.Id</th>
                         <td>@produto.Nome</td>
                         <td>@produto.CategoriaId</td>
                         <td>@produto.Valor</td>
                         <td>
-                            <a asp-action="Atualizar" asp-route-id="@produto.id" class="btn btn-secondary">Atualizar</a>
-                            <a asp-action="Excluir" asp-route-id="@produto.id" class="btn btn-danger">Excluir</a>
+                            <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary">Atualizar</a>
+                            <a asp-action="Excluir" asp-route-id="@produto.Id" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
                 }

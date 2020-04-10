@@ -1,32 +1,34 @@
 ﻿using LojaVirtual.Libraries.Login;
-using LojaVirtual.Models;
-using LojaVirtual.Models.Constants;
+using LojaVirtual.Models.Contants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Filtro
 {
     public class ColaboradorAutorizacaoAttribute : Attribute, IAuthorizationFilter
     {
-        private string _tipoColaborador;
-        public ColaboradorAutorizacaoAttribute(string TipoColaborador = ColaboradorTipoConstant.Comum)
+        private string _tipoColaboradorAutorizado;
+        public ColaboradorAutorizacaoAttribute(string TipoColaboradorAutorizado = ColaboradorTipoConstant.Comum)
         {
-            _tipoColaborador = TipoColaborador;
+            _tipoColaboradorAutorizado = TipoColaboradorAutorizado;
         }
 
         LoginColaborador _loginColaborador;
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             _loginColaborador = (LoginColaborador)context.HttpContext.RequestServices.GetService(typeof(LoginColaborador));
-            Colaborador _colaborador = _loginColaborador.GetColaborador();
-            if (_colaborador == null)
+            Models.Colaborador colaborador = _loginColaborador.GetColaborador();
+            if (colaborador == null)
             {
-                context.Result = new RedirectToActionResult("Login", "Home", null); //ContentResult() { Content = "Acesso negado" };
+                context.Result = new RedirectToActionResult("Login", "Home", null);
             }
             else
             {
-                if (_colaborador.Tipo == ColaboradorTipoConstant.Comum && _tipoColaborador == ColaboradorTipoConstant.Gerente)
+                if(colaborador.Tipo == ColaboradorTipoConstant.Comum && _tipoColaboradorAutorizado == ColaboradorTipoConstant.Gerente)
                 {
                     context.Result = new ForbidResult();
                 }

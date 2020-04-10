@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.DataBase;
-using LojaVirtual.Models;
+// using LojaVirtual.Migrations;
+// using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,15 @@ namespace LojaVirtual.Repositories
         {
             _banco = banco;
         }
-        public void Cadastrar(NewsLetterEmail newsletter)
+        public void Cadastrar(LojaVirtual.Models.NewsletterEmail newsletter)
         {
-            _banco.NewsLetterEmails.Add(newsletter);
+            _banco.NewsletterEmails.Add(newsletter);
             _banco.SaveChanges();
         }
 
-        public IEnumerable<NewsLetterEmail> ObterTodasNewsletter()
+        public IEnumerable<LojaVirtual.Models.NewsletterEmail> ObterTodasNewsletter()
         {
-            return _banco.NewsLetterEmails.ToList();
+            return _banco.NewsletterEmails.ToList();
         }
     }
 }

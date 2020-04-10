@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Libraries.bug
+namespace LojaVirtual.Libraries.Bug
 {
     public class CurrentDirectoryHelpers
     {
         internal const string AspNetCoreModuleDll = "aspnetcorev2_inprocess.dll";
 
-       // [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
 
         [System.Runtime.InteropServices.DllImport(AspNetCoreModuleDll)]

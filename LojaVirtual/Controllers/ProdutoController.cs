@@ -1,12 +1,14 @@
 ﻿using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LojaVirtual.Controllers
 {
-    public class ProdutoController: Controller
+    public class ProdutoController : Controller
     {
         private ICategoriaRepository _categoriaRepository;
         private IProdutoRepository _produtoRepository;
@@ -16,32 +18,18 @@ namespace LojaVirtual.Controllers
             _categoriaRepository = categoriaRepository;
             _produtoRepository = produtoRepository;
         }
-
+        
+        [HttpGet]
+        [Route("/Produto/Categoria/{slug}")]
+        public IActionResult ListagemCategoria(string slug)
+        {
+            return View(_categoriaRepository.ObterCategoria(slug));
+        }
 
         [HttpGet]
-        [Route("Produto/Categoria/{slug}")]
-        public IActionResult ListarCategoria(string slug)
+        public ActionResult Visualizar(int id)
         {
-            Categoria categoriaPrincial = _categoriaRepository.ObterCategoria(slug);
-            List<Categoria> listaCategorias = _categoriaRepository.ObterCategoriasRecursivas(categoriaPrincial).ToList();
-            ViewBag.Categorias = listaCategorias;
-            return View();
-        }
-
-
-
-
-
-
-        public ActionResult Visualizar()
-        {
-            Produto produto = GetProduto();
-            return View(produto);
-        }
-
-        private Produto GetProduto()
-        {
-            return new Produto() { id = 33, Nome = "Manteiga do Marlon", Descricao = "Vai que vai", Valor = 69.69M };
+            return View(_produtoRepository.ObterProduto(id));
         }
     }
 }

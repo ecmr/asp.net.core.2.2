@@ -1,47 +1,39 @@
-﻿using LojaVirtual.Libraries.Email;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Texto;
-using LojaVirtual.Models.Constants;
+using LojaVirtual.Models.Contants;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
-namespace LojaVirtual.Areas.Colaborador
+namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
     [ColaboradorAutorizacao(ColaboradorTipoConstant.Gerente)]
     public class ColaboradorController : Controller
     {
-        private IColaboradorRepository _colaboradorRepository;
+        private IColaboradorRepository _colaboradorRespository;
         private GerenciarEmail _gerenciarEmail;
 
-        public ColaboradorController(IColaboradorRepository colaborador, GerenciarEmail gerenciarEmail)
+        public ColaboradorController(IColaboradorRepository colaboradorRespository, GerenciarEmail gerenciarEmail)
         {
-            _colaboradorRepository = colaborador;
+            _colaboradorRespository = colaboradorRespository;
             _gerenciarEmail = gerenciarEmail;
         }
 
-
         public IActionResult Index(int? pagina)
         {
-            IPagedList<Models.Colaborador> colaboradores = _colaboradorRepository.ObterTodosColaboradores(pagina);
+            IPagedList<Models.Colaborador> colaboradores = _colaboradorRespository.ObterTodosColaboradores(pagina);
+
             return View(colaboradores);
         }
 
         [HttpGet]
-        [ValidateHttpRefererAttribute]
-        public IActionResult GerarSenha(int id)
-        {
-            Models.Colaborador colaborador = _colaboradorRepository.ObterColaborador(id);
-            colaborador.Senha =  KeyGenerator.GetUniqueKey(8);
-            _colaboradorRepository.AtualizarSenha(colaborador);
-            _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
-            TempData["MSG_S"] = Mensagem.MSG_S002;
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpGet]    
         public IActionResult Cadastrar()
         {
             return View();
@@ -51,22 +43,40 @@ namespace LojaVirtual.Areas.Colaborador
         public IActionResult Cadastrar([FromForm]Models.Colaborador colaborador)
         {
             ModelState.Remove("Senha");
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 colaborador.Tipo = ColaboradorTipoConstant.Comum;
                 colaborador.Senha = KeyGenerator.GetUniqueKey(8);
-                _colaboradorRepository.Cadastrar(colaborador);
+                _colaboradorRespository.Cadastrar(colaborador);
+
                 _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
+
                 TempData["MSG_S"] = Mensagem.MSG_S001;
+
                 return RedirectToAction(nameof(Index));
             }
             return View();
         }
 
         [HttpGet]
+        [ValidateHttpReferer]
+        public IActionResult GerarSenha(int id)
+        {
+            Models.Colaborador colaborador = _colaboradorRespository.ObterColaborador(id);
+            colaborador.Senha = KeyGenerator.GetUniqueKey(8);
+            _colaboradorRespository.AtualizarSenha(colaborador);
+
+            _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
+
+            TempData["MSG_S"] = Mensagem.MSG_S003;
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
         public IActionResult Atualizar(int id)
         {
-            Models.Colaborador colaborador = _colaboradorRepository.ObterColaborador(id);
+            Models.Colaborador colaborador = _colaboradorRespository.ObterColaborador(id);
             return View(colaborador);
         }
 
@@ -74,21 +84,25 @@ namespace LojaVirtual.Areas.Colaborador
         public IActionResult Atualizar([FromForm]Models.Colaborador colaborador, int id)
         {
             ModelState.Remove("Senha");
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                _colaboradorRepository.Atualizar(colaborador);
+                _colaboradorRespository.Atualizar(colaborador);
+
                 TempData["MSG_S"] = Mensagem.MSG_S001;
+
                 return RedirectToAction(nameof(Index));
             }
             return View();
         }
 
         [HttpGet]
-        [ValidateHttpRefererAttribute]
+        [ValidateHttpReferer]
         public IActionResult Excluir(int id)
         {
-            _colaboradorRepository.Excluir(id);
-            TempData["MSG_S"] = Mensagem.MSG_S001;
+            _colaboradorRespository.Excluir(id);
+
+            TempData["MSG_S"] = Mensagem.MSG_S002;
+
             return RedirectToAction(nameof(Index));
         }
     }
