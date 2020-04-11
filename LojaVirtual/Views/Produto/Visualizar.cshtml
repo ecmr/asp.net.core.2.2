@@ -1,7 +1,8 @@
-﻿@model LojaVirtual.Models.Produto
+﻿@model LojaVirtual.Models.ProdutoAgregador.Produto
 
 <br style="clear: both" />
 <div class="container">
+
     <section id="product_detail">
         <div id="code_prod_detail">
             <div class="card">
@@ -12,14 +13,14 @@
                                 <div>
                                     @if (Model.Imagens != null && Model.Imagens.Count > 0)
                                     {
-                                        <a href="@Model.Imagens.ElementAt(0).Caminho" data-fancybox="<img src='@Model.Imagens.ElementAt(0).Caminho' style='width: 100%; height:100%; !Important'>"><img src="@Model.Imagens.ElementAt(0).Caminho" style="width: 50%; height:50%;"></a>
+                                        <a href="@Model.Imagens.ElementAt(0).Caminho" data-fancybox><img src="@Model.Imagens.ElementAt(0).Caminho"></a>
                                     }
                                     else
                                     {
                                         <a href="~/img/imagem-produto.png" data-fancybox><img src="~/img/imagem-produto.png"></a>
                                     }
                                 </div>
-                            </div>
+                            </div> <!-- slider-product.// -->
                             <div class="img-small-wrap">
                                 @if (Model.Imagens != null && Model.Imagens.Count > 0)
                                 {
@@ -28,8 +29,8 @@
                                         <div class="item-gallery"> <img src="@imagem.Caminho"></div>
                                     }
                                 }
-                            </div>
-                        </article>
+                            </div> <!-- slider-nav.// -->
+                        </article> <!-- gallery-wrap .end// -->
                     </aside>
                     <aside class="col-sm-7">
                         <article class="p-5">
@@ -39,7 +40,7 @@
                                     <span class="num">@Model.Valor.ToString("C")</span>
                                 </var>
                                 <span>/unid</span>
-                            </div>
+                            </div> <!-- price-detail-wrap .// -->
                             <dl>
                                 <dt>Descrição</dt>
                                 <dd>
@@ -61,26 +62,11 @@
                                 <dd class="col-sm-9">@Model.Quantidade</dd>
                             </dl>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <dl class="dlist-inline">
-                                        <dt>Quantity: </dt>
-                                        <dd>
-                                            <select class="form-control form-control-sm" style="width:70px;">
-                                                <option> 1 </option>
-                                                <option> 2 </option>
-                                                <option> 3 </option>
-                                            </select>
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
-                            <hr>
-                            <a href="#" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho </a>
-                        </article>
-                    </aside>
-                </div>
-            </div>
-        </div>
+                            <a asp-controller="CarrinhoCompra" asp-action="AdicionarItem" asp-route-id="@Model.Id" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho </a>
+                        </article> <!-- card-body.// -->
+                    </aside> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- card.// -->
+        </div> <!-- code-wrap.// -->
     </section>
 </div>

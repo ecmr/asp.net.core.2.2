@@ -13,28 +13,33 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 3 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
-using LojaVirtual.Models;
-
-#line default
-#line hidden
-#line 4 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+#line 2 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
-#line 5 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+#line 3 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
 using X.PagedList;
 
 #line default
 #line hidden
+#line 5 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+using LojaVirtual.Models;
+
+#line default
+#line hidden
 #line 6 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.ProdutoAgregador;
+
+#line default
+#line hidden
+#line 8 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\_ViewImports.cshtml"
 using LojaVirtual.Models.ViewModels;
 
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"962f455f298a78dc6b83bc63f60db1ac096e1b7c", @"/Views/Shared/Components/Menu/_SubMenu.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7c8e441a1ad085f94e3a56d46d99a0c2d222558b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1047c8e5b11239b99ae64612ae7c4d09a920db8b", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_Menu__SubMenu : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("dropdown-item"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -82,7 +87,7 @@ using LojaVirtual.Models.ViewModels;
             WriteLiteral("    <li class=\"dropdown-submenu\">\r\n        ");
             EndContext();
             BeginContext(316, 153, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "962f455f298a78dc6b83bc63f60db1ac096e1b7c5429", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "962f455f298a78dc6b83bc63f60db1ac096e1b7c5579", async() => {
                 BeginContext(448, 17, false);
 #line 10 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\Shared\Components\Menu\_SubMenu.cshtml"
                                                                                                                                       Write(CategoriaPai.Nome);
@@ -159,7 +164,7 @@ using LojaVirtual.Models.ViewModels;
             WriteLiteral("                    <li class=\"dropdown-item\">");
             EndContext();
             BeginContext(1080, 114, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "962f455f298a78dc6b83bc63f60db1ac096e1b7c9964", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "962f455f298a78dc6b83bc63f60db1ac096e1b7c10114", async() => {
                 BeginContext(1175, 15, false);
 #line 22 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\Shared\Components\Menu\_SubMenu.cshtml"
                                                                                                                                        Write(categoriaF.Nome);
@@ -224,7 +229,7 @@ else
             WriteLiteral("    <li class=\"dropdown-item\">");
             EndContext();
             BeginContext(1303, 117, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "962f455f298a78dc6b83bc63f60db1ac096e1b7c13548", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "962f455f298a78dc6b83bc63f60db1ac096e1b7c13699", async() => {
                 BeginContext(1399, 17, false);
 #line 30 "C:\udemy\asp.net.core.2.2\LojaVirtual\Views\Shared\Components\Menu\_SubMenu.cshtml"
                                                                                                                         Write(CategoriaPai.Nome);
