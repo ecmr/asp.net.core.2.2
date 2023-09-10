@@ -90,7 +90,7 @@ namespace LojaVirtual.Migrations
 
                     b.Property<string>("Tipo");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Colaboradores");
                 });

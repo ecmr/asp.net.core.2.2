@@ -44,3 +44,10 @@ C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.dll
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.genruntimeconfig.cache
 C:\udemy\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.AssemblyReference.cache
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Libraries.Lang.Mensagem.resources
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.GenerateResource.cache
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfoInputs.cache
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfo.cs
+C:\repos\asp.net.core.2.2\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CoreCompileInputs.cache

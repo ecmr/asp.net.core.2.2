@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog;
 using NLog.Web;
+using System;
 
 namespace LojaVirtual
 {
@@ -15,23 +13,27 @@ namespace LojaVirtual
     {
         public static void Main(string[] args)
         {
-            // NLog: setup the logger first to catch all errors
-            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            var logger = LogManager.Setup().LoadConfigurationFromAppSettings();
+            
+            
+            var builder = WebApplication.CreateBuilder(args);
+            var app = builder.Build();
             try
             {
-                logger.Debug("init main");
+                logger.GetLogger("").Debug("init main");
                 CreateWebHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
                 //NLog: catch setup errors
-                logger.Error(ex, "Stopped program because of exception");
+                app.Logger.LogError(ex, "Stopped program because of exception");
                 throw;
             }
             finally
             {
                 // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
                 NLog.LogManager.Shutdown();
+                app.WaitForShutdown();
             }
         }
 

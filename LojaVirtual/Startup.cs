@@ -17,7 +17,9 @@ using LojaVirtual.Libraries.Middleware;
 using LojaVirtual.Libraries.CarrinhoCompra;
 using AutoMapper;
 using LojaVirtual.Libraries.AutoMapper;
-
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using AutoMapper.Internal;
+using Microsoft.Extensions.Hosting;
 
 namespace LojaVirtual
 {
@@ -37,7 +39,18 @@ namespace LojaVirtual
              * AutoMapper
              */
 
-            services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper(typeof(Startup));
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                //Needed for https://github.com/AutoMapper/AutoMapper/issues/3988
+                mc.Internal().MethodMappingEnabled = false;
+                mc.AddProfile(new MappingProfile());
+            });
+            //mapperConfig.AssertConfigurationIsValid();
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            //builder.Services.AddSingleton(mapper);
+            services.AddSingleton(mapper);
 
             /*
              * Padrão Repository
@@ -94,52 +107,30 @@ namespace LojaVirtual
             services.AddMvc(options =>
             {
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "O campo deve ser preenchido!");
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                options.EnableEndpointRouting = true;
 
-            string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            services.AddDbContext<LojaVirtualContext>(options => options.UseSqlServer(connection));
+            });
+
+
+
+
+            //"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connection = "Server=EDINEI-LAPTOP;Database=CommerceLoja;User Id=edine;Password=P@ssW0rd#2023!;";
+            //services.AddDbContext<LojaVirtualContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<CommerceLojaContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public static void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
-            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseSession();
-            app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
-            /*
-             * https://www.site.com.br -> Qual controlador? (Gestão) -> Rotas
-             * https://www.site.com.br/Produto/Visualizar/MouseRazorZK
-             * https://www.site.com.br/Produto/Visualizar/10
-             * https://www.site.com.br/Produto/Visualizar -> Listagem de todos os produtos
-             * 
-             * https://www.site.com.br -> https://www.site.com.br/Home/Index
-             * https://www.site.com.br/Produto -> https://www.site.com.br/Produto/Index
-             */
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                  );
-                routes.MapRoute(
-                    name: "default",
-                    template: "/{controller=Home}/{action=Index}/{id?}");
-            });
+            //app.UseMvc();
         }
     }
 }
